@@ -1,0 +1,1157 @@
+﻿```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>EvoBite - Food & Calorie Tracker</title>
+
+<style>
+
+/* =========================
+   GENERAL
+========================= */
+
+body {
+    font-family: "Trebuchet MS", Arial, sans-serif;
+    margin: 0;
+    background: linear-gradient(135deg, #fff0f7, #f3e8ff);
+    color: #4a3b4f;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+header {
+    background: linear-gradient(90deg, #d88ac7, #9b7ede);
+    color: white;
+    padding: 28px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 38px;
+}
+
+header p {
+    font-size: 17px;
+    margin-top: 8px;
+}
+
+
+/* =========================
+   NAVIGATION
+========================= */
+
+nav {
+    background: #ffffff;
+    padding: 14px;
+    text-align: center;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+}
+
+nav a {
+    text-decoration: none;
+    color: #8d5aa8;
+    font-weight: bold;
+    margin: 0 18px;
+}
+
+nav a:hover {
+    color: #d45fa5;
+}
+
+
+/* =========================
+   CONTAINER
+========================= */
+
+.container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 25px auto;
+}
+
+
+/* =========================
+   CARDS
+========================= */
+
+.card {
+    background: white;
+    padding: 25px;
+    margin-bottom: 25px;
+    border-radius: 18px;
+    box-shadow: 0 5px 18px rgba(100,70,120,0.12);
+}
+
+.card h2 {
+    color: #9a5caf;
+    margin-top: 0;
+}
+
+
+/* =========================
+   INPUTS
+========================= */
+
+label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 7px;
+    font-weight: bold;
+    color: #684b70;
+}
+
+select,
+input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #e4c8ed;
+    border-radius: 10px;
+    box-sizing: border-box;
+    font-family: "Trebuchet MS", Arial, sans-serif;
+    font-size: 15px;
+    background: #fffaff;
+}
+
+select:focus,
+input:focus {
+    outline: none;
+    border-color: #c47ad1;
+}
+
+
+/* =========================
+   BUTTONS
+========================= */
+
+button {
+    border: none;
+    padding: 12px 20px;
+    margin-top: 15px;
+    border-radius: 10px;
+    background: linear-gradient(90deg, #d77ac5, #9b7ede);
+    color: white;
+    font-weight: bold;
+    font-family: "Trebuchet MS", Arial, sans-serif;
+    cursor: pointer;
+}
+
+button:hover {
+    opacity: 0.88;
+}
+
+.delete-button {
+    background: #e78aaa;
+    padding: 7px 12px;
+    font-size: 13px;
+}
+
+
+/* =========================
+   RESULT BOX
+========================= */
+
+.result {
+    margin-top: 20px;
+    padding: 18px;
+    background: #fff0f8;
+    border-left: 5px solid #c46ac0;
+    border-radius: 10px;
+    display: none;
+}
+
+.result h3 {
+    color: #9854a9;
+}
+
+
+/* =========================
+   HOW TO USE
+========================= */
+
+.how-to {
+    background: #f7edff;
+    padding: 20px;
+    border-radius: 14px;
+}
+
+.how-to li {
+    margin-bottom: 10px;
+}
+
+
+/* =========================
+   DASHBOARD
+========================= */
+
+.dashboard {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.stat {
+    flex: 1;
+    min-width: 200px;
+    background: linear-gradient(135deg, #fff0f7, #f1e6ff);
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.stat h3 {
+    margin: 0;
+    color: #9655aa;
+}
+
+.stat p {
+    font-size: 25px;
+    font-weight: bold;
+    margin: 10px 0 0;
+}
+
+
+/* =========================
+   FOOD LIST
+========================= */
+
+.food-entry {
+    background: #fff5fa;
+    border: 1px solid #eccfea;
+    padding: 15px;
+    margin-top: 12px;
+    border-radius: 12px;
+}
+
+.food-entry strong {
+    color: #914fa5;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    text-align: center;
+    padding: 25px;
+    margin-top: 30px;
+    background: #eadcf4;
+    color: #684b70;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 600px) {
+
+    header h1 {
+        font-size: 30px;
+    }
+
+    nav a {
+        display: block;
+        margin: 10px;
+    }
+
+    .container {
+        width: 94%;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header>
+
+<h1>🌸 EvoBite 🌸</h1>
+
+<p>
+Eat • Understand • Track • Make Better Choices
+</p>
+
+</header>
+
+
+<!-- =========================
+     NAVIGATION
+========================= -->
+
+<nav>
+
+<a href="#manual">🍓 Food Manual</a>
+
+<a href="#tracker">🍫 What Did I Eat?</a>
+
+<a href="#day">📊 My Day</a>
+
+</nav>
+
+
+<div class="container">
+
+
+<!-- =========================
+     FOOD MANUAL
+========================= -->
+
+<div class="card" id="manual">
+
+<h2>🍓 EvoBite Food Manual</h2>
+
+<p>
+Check the approximate calories of common foods before making your food choice.
+</p>
+
+
+<label for="foodSelect">
+Choose a Food
+</label>
+
+
+<select id="foodSelect">
+
+<option value="">-- Select Food --</option>
+
+<option value="95">Apple</option>
+
+<option value="105">Banana</option>
+
+<option value="62">Orange</option>
+
+<option value="135">Mango</option>
+
+<option value="46">Watermelon</option>
+
+<option value="205">Rice</option>
+
+<option value="100">Roti</option>
+
+<option value="120">Chapati</option>
+
+<option value="180">Dal</option>
+
+<option value="150">Vegetable Curry</option>
+
+<option value="250">Chicken Curry</option>
+
+<option value="220">Grilled Chicken</option>
+
+<option value="78">Egg</option>
+
+<option value="78">Boiled Egg</option>
+
+<option value="120">Milk</option>
+
+<option value="100">Curd</option>
+
+<option value="265">Paneer</option>
+
+<option value="80">Bread</option>
+
+<option value="250">Sandwich</option>
+
+<option value="285">Pizza</option>
+
+<option value="350">Burger</option>
+
+<option value="365">French Fries</option>
+
+<option value="210">Chocolate</option>
+
+<option value="207">Ice Cream</option>
+
+<option value="300">Cake</option>
+
+<option value="180">Poha</option>
+
+<option value="200">Upma</option>
+
+<option value="60">Idli</option>
+
+<option value="170">Dosa</option>
+
+<option value="300">Biryani</option>
+
+<option value="280">Noodles</option>
+
+<option value="260">Samosa</option>
+
+<option value="180">Pani Puri</option>
+
+<option value="250">Pakora</option>
+
+<option value="200">Momos</option>
+
+<option value="140">Biscuits</option>
+
+<option value="270">Potato Chips</option>
+
+<option value="380">Instant Noodles</option>
+
+<option value="160">Cookies</option>
+
+</select>
+
+
+<button type="button" onclick="checkCalories()">
+🔍 Check Calories
+</button>
+
+
+<div id="manualResult" class="result">
+
+</div>
+
+
+</div>
+
+
+
+<!-- =========================
+     HOW TO USE
+========================= -->
+
+<div class="card">
+
+<h2>💗 How to Use EvoBite</h2>
+
+<div class="how-to">
+
+<ol>
+
+<li>
+<strong>Check the food:</strong>
+Use the Food Manual to see an approximate calorie value.
+</li>
+
+<li>
+<strong>Enter what you actually ate:</strong>
+Type the food name in the tracker.
+</li>
+
+<li>
+<strong>Enter calories:</strong>
+Use the value from a food packet, nutrition label, or your estimate.
+</li>
+
+<li>
+<strong>Calculate:</strong>
+EvoBite will show the calorie information and theoretical energy-equivalent.
+</li>
+
+<li>
+<strong>Add to today's tracker:</strong>
+Add the food to your daily food history.
+</li>
+
+<li>
+<strong>Check your day:</strong>
+See your total calories and remaining daily calories.
+</li>
+
+</ol>
+
+</div>
+
+</div>
+
+
+
+<!-- =========================
+     WHAT DID I EAT
+========================= -->
+
+<div class="card" id="tracker">
+
+<h2>🍫 What Did I Eat?</h2>
+
+<p>
+Enter the food you actually ate and the calories for that food.
+</p>
+
+
+<label for="eatenFood">
+What did you eat?
+</label>
+
+<input
+type="text"
+id="eatenFood"
+placeholder="Example: Pizza"
+>
+
+
+<label for="eatenCalories">
+Calories
+</label>
+
+<input
+type="number"
+id="eatenCalories"
+placeholder="Example: 285"
+min="0"
+>
+
+
+<button type="button" onclick="calculateEatenFood()">
+🧮 Calculate
+</button>
+
+
+<button type="button" onclick="addEatenFood()">
+➕ Add to Today's Food
+</button>
+
+
+<div id="mainResult" class="result">
+
+</div>
+
+
+</div>
+
+
+
+<!-- =========================
+     MY DAY
+========================= -->
+
+<div class="card" id="day">
+
+<h2>📊 My Day</h2>
+
+
+<div class="dashboard">
+
+
+<div class="stat">
+
+<h3>🔥 Calories Consumed</h3>
+
+<p id="totalDisplay">
+0 kcal
+</p>
+
+</div>
+
+
+<div class="stat">
+
+<h3>🎯 Daily Target</h3>
+
+<input
+type="number"
+id="dailyTarget"
+value="2000"
+min="0"
+oninput="updateDashboard()"
+>
+
+</div>
+
+
+<div class="stat">
+
+<h3>💗 Remaining</h3>
+
+<p id="remainingDisplay">
+2000 kcal
+</p>
+
+</div>
+
+
+</div>
+
+
+<h3 style="color:#9655aa; margin-top:30px;">
+🍽️ Today's Food
+</h3>
+
+
+<div id="foodList">
+
+<p>
+No food recorded yet.
+</p>
+
+</div>
+
+
+<button type="button" onclick="clearAllFood()">
+🗑️ Clear All
+</button>
+
+
+</div>
+
+
+</div>
+
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+🌸 EvoBite — Make Better Food Choices 🌸
+
+<br><br>
+
+Track • Understand • Improve
+
+</footer>
+
+
+
+<script>
+
+
+/* =========================
+   TOTAL CALORIES
+========================= */
+
+var totalCalories = 0;
+
+
+
+/* =========================
+   FOOD MANUAL
+========================= */
+
+function checkCalories() {
+
+    var select =
+        document.getElementById("foodSelect");
+
+
+    var food =
+        select.options[select.selectedIndex].text;
+
+
+    var calories =
+        parseFloat(select.value);
+
+
+    var result =
+        document.getElementById("manualResult");
+
+
+    if (select.value === "") {
+
+        result.style.display = "block";
+
+        result.innerHTML =
+            "<strong>Please select a food first.</strong>";
+
+        return;
+    }
+
+
+    var feedback = "";
+
+
+    if (calories < 100) {
+
+        feedback =
+            "🌱 Light Food";
+
+    }
+
+    else if (calories < 200) {
+
+        feedback =
+            "😊 Moderate Food";
+
+    }
+
+    else if (calories < 300) {
+
+        feedback =
+            "⚡ Medium-High Calories";
+
+    }
+
+    else {
+
+        feedback =
+            "🍰 Calorie-Dense Food";
+
+    }
+
+
+    result.style.display = "block";
+
+
+    result.innerHTML =
+
+        "<h3>" +
+        escapeHTML(food) +
+        "</h3>" +
+
+        "<p><strong>Approximate Calories:</strong> " +
+        calories +
+        " kcal per standard serving</p>" +
+
+        "<p><strong>Food Category:</strong> " +
+        feedback +
+        "</p>" +
+
+        "<p>💡 Calorie values are approximate and can vary with portion size and preparation.</p>";
+
+}
+
+
+
+/* =========================
+   CALCULATE EATEN FOOD
+========================= */
+
+function calculateEatenFood() {
+
+    var food =
+        document.getElementById("eatenFood").value.trim();
+
+
+    var calories =
+        parseFloat(
+            document.getElementById("eatenCalories").value
+        );
+
+
+    var result =
+        document.getElementById("mainResult");
+
+
+    if (food === "") {
+
+        result.style.display = "block";
+
+        result.innerHTML =
+            "<strong>Please enter what you ate.</strong>";
+
+        return;
+    }
+
+
+    if (isNaN(calories) || calories < 0) {
+
+        result.style.display = "block";
+
+        result.innerHTML =
+            "<strong>Please enter a valid calorie amount.</strong>";
+
+        return;
+    }
+
+
+    /*
+       Mathematical energy equivalent.
+
+       7700 kcal is sometimes used as a rough
+       energy-equivalent reference for 1 kg of body fat.
+
+       This does NOT mean the food will actually
+       cause this amount of weight gain.
+    */
+
+    var theoreticalKg =
+        calories / 7700;
+
+
+    var feedback = "";
+
+
+    if (calories < 100) {
+
+        feedback =
+            "🌱 Light Food";
+
+    }
+
+    else if (calories < 200) {
+
+        feedback =
+            "😊 Moderate Food";
+
+    }
+
+    else if (calories < 300) {
+
+        feedback =
+            "⚡ Medium-High Calories";
+
+    }
+
+    else {
+
+        feedback =
+            "🍰 Calorie-Dense Food";
+
+    }
+
+
+    result.style.display = "block";
+
+
+    result.innerHTML =
+
+        "<h3>🍽️ " +
+        escapeHTML(food) +
+        "</h3>" +
+
+        "<p><strong>Calories:</strong> " +
+        calories.toFixed(0) +
+        " kcal</p>" +
+
+        "<p><strong>Food Level:</strong> " +
+        feedback +
+        "</p>" +
+
+        "<p><strong>Theoretical energy-equivalent:</strong> " +
+        theoreticalKg.toFixed(3) +
+        " kg</p>" +
+
+        "<p style='font-size:13px;'>" +
+
+        "⚠️ This is only a mathematical energy-equivalent based on " +
+        "7700 kcal ≈ 1 kg. It is NOT a prediction of actual weight gain. " +
+        "Actual body-weight changes depend on overall energy balance, " +
+        "metabolism, activity, water, glycogen and other factors." +
+
+        "</p>";
+
+}
+
+
+
+/* =========================
+   ADD FOOD
+========================= */
+
+function addEatenFood() {
+
+    var food =
+        document.getElementById("eatenFood").value.trim();
+
+
+    var calories =
+        parseFloat(
+            document.getElementById("eatenCalories").value
+        );
+
+
+    if (food === "") {
+
+        alert("Please enter what you ate.");
+
+        return;
+    }
+
+
+    if (isNaN(calories) || calories < 0) {
+
+        alert("Please enter a valid calorie amount.");
+
+        return;
+    }
+
+
+    totalCalories =
+        totalCalories + calories;
+
+
+    var list =
+        document.getElementById("foodList");
+
+
+    if (
+        list.innerHTML.indexOf(
+            "No food recorded"
+        ) !== -1
+    ) {
+
+        list.innerHTML = "";
+
+    }
+
+
+    /*
+       Create food entry safely
+    */
+
+    var entry =
+        document.createElement("div");
+
+
+    entry.className =
+        "food-entry";
+
+
+    var foodTitle =
+        document.createElement("strong");
+
+
+    foodTitle.textContent =
+        "🍽️ " + food;
+
+
+    var calorieText =
+        document.createElement("p");
+
+
+    calorieText.textContent =
+        calories.toFixed(0) + " kcal";
+
+
+    var removeButton =
+        document.createElement("button");
+
+
+    removeButton.type =
+        "button";
+
+
+    removeButton.className =
+        "delete-button";
+
+
+    removeButton.textContent =
+        "Remove";
+
+
+    removeButton.onclick =
+        function() {
+
+            removeFood(
+                entry,
+                calories
+            );
+
+        };
+
+
+    entry.appendChild(foodTitle);
+
+    entry.appendChild(calorieText);
+
+    entry.appendChild(removeButton);
+
+
+    list.appendChild(entry);
+
+
+    updateDashboard();
+
+
+    /*
+       CLEAR INPUTS AFTER ADDING
+    */
+
+    document.getElementById("eatenFood").value = "";
+
+    document.getElementById("eatenCalories").value = "";
+
+
+    /*
+       CLEAR PREVIOUS CALCULATION RESULT
+    */
+
+    document.getElementById("mainResult").style.display =
+        "none";
+
+}
+
+
+
+/* =========================
+   REMOVE FOOD
+========================= */
+
+function removeFood(
+    entry,
+    calories
+) {
+
+    totalCalories =
+        totalCalories - calories;
+
+
+    if (totalCalories < 0) {
+
+        totalCalories = 0;
+
+    }
+
+
+    entry.remove();
+
+
+    var list =
+        document.getElementById("foodList");
+
+
+    if (list.children.length === 0) {
+
+        list.innerHTML =
+            "<p>No food recorded yet.</p>";
+
+    }
+
+
+    updateDashboard();
+
+}
+
+
+
+/* =========================
+   UPDATE DASHBOARD
+========================= */
+
+function updateDashboard() {
+
+    var target =
+        parseFloat(
+            document.getElementById("dailyTarget").value
+        );
+
+
+    if (isNaN(target) || target < 0) {
+
+        target = 0;
+
+    }
+
+
+    document.getElementById("totalDisplay").innerHTML =
+
+        totalCalories.toFixed(0) +
+        " kcal";
+
+
+    var difference =
+        target - totalCalories;
+
+
+    var remaining =
+        document.getElementById("remainingDisplay");
+
+
+    if (difference >= 0) {
+
+        remaining.innerHTML =
+
+            difference.toFixed(0) +
+            " kcal";
+
+    }
+
+    else {
+
+        remaining.innerHTML =
+
+            Math.abs(difference).toFixed(0) +
+            " kcal over";
+
+    }
+
+}
+
+
+
+/* =========================
+   CLEAR ALL FOOD
+========================= */
+
+function clearAllFood() {
+
+    if (totalCalories === 0) {
+
+        alert("There is no food to clear.");
+
+        return;
+    }
+
+
+    var confirmClear =
+        confirm(
+            "Are you sure you want to clear today's food?"
+        );
+
+
+    if (!confirmClear) {
+
+        return;
+
+    }
+
+
+    totalCalories = 0;
+
+
+    document.getElementById("foodList").innerHTML =
+
+        "<p>No food recorded yet.</p>";
+
+
+    updateDashboard();
+
+}
+
+
+
+/* =========================
+   SAFE TEXT FUNCTION
+========================= */
+
+function escapeHTML(text) {
+
+    var div =
+        document.createElement("div");
+
+    div.textContent =
+        text;
+
+    return div.innerHTML;
+
+}
+
+
+
+/* =========================
+   INITIAL DASHBOARD
+========================= */
+
+updateDashboard();
+
+</script>
+
+
+</body>
+
+</html>
+```
